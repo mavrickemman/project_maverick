@@ -1,17 +1,13 @@
 {
-  "name": "foundation-sites-template",
-  "version": "1.0.0",
+  "name": "project_maverick",
+  "description": "",
+  "main": "index.js",
   "authors": [
-    "ZURB <foundation@zurb.com>"
+    "Emman Calabroso <emman.calabroso@chromedia.com>"
   ],
-  "description": "Basic template for a new Foundation for Sites project.",
-  "main": "index.html",
-  "license": "MIT",
-  "homepage": "http://foundation.zurb.com",
-  "dependencies": {
-    "foundation-sites": "~6.3.0",
-    "motion-ui": "~1.2.2"
-  },
+  "license": "ISC",
+  "homepage": "https://github.com/mavrickemman/project_maverick",
+  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
@@ -19,5 +15,9 @@
     "test",
     "tests"
   ],
-  "private": true
+  "devDependencies": {
+    "jquery": "^3.3.1",
+    "velocity": "^2.0.2",
+    "blast-text": "^2.0.0"
+  }
 }
