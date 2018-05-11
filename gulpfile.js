@@ -17,8 +17,9 @@ gulp.task('scripts', function () {
 		'bower_components/velocity/velocity.js',
 		'bower_components/velocity/velocity.ui.js',
 		'bower_components/blast-text/jquery.blast.js',
+		'docs/js/app.js'
 	])
-	.pipe(concat('libs.js'))
+	.pipe(concat('main.js'))
 	.pipe(uglify())
 	.pipe(gulp.dest('docs/js'))
 });
