@@ -3,10 +3,25 @@ var $ 	 = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
+var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
+
 var sassPaths = [
 	'node_modules/bootstrap/scss',
 	'node_modules/font-awesome/scss'
 ];
+
+gulp.task('scripts', function () {
+	gulp.src([
+		'bower_components/jquery/dist/jquery.js',
+		'bower_components/velocity/velocity.min.js',
+		'bower_components/velocity/velocity.ui.js',
+		'bower_components/blast-text/jquery.blast.min.js',
+	])
+	.pipe(concat('libs.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('docs/js'))
+});
 
 gulp.task('sass', function () {
 	return gulp.src('docs/scss/styles.scss')
