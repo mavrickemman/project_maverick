@@ -1,29 +1,28 @@
 function moveHeading () { 
-	$("#intro").velocity ( { translateY: 0 }, [ 400, 30 ], 1800 );
+	$("#intro").velocity ( { transform: "translateY(30px)" }, [ 400, 30 ], 1800 );
 }
 
 function slideInItems () {
-	$(".highlight").velocity ( { translateY: 0 }, [ 400, 30], 1800 );
-	
-	$(".slide-in").velocity ( "transition.slideUpIn", { stagger: 80, drag: !0 } );
+	$(".highlight").velocity ( { transform: "translateY(0px)" }, [ 400, 30], 1800 );
+	$(".slide-in").velocity ( "transition.slideUpIn", { stagger: 80, drag: true } );
 }
 
 $("#intro").velocity ( { 
-	translateY: ( $(window).outerHeight() - $("#intro").height() ) / 2 ,
+	transform: "translateY(" + (( $(window).outerHeight() - $("#intro").height() ) / 2) + "px)",
 	opacity: 1 
 	}, 0 
 );
 
 $(".highlight").velocity ({
-	translateY: $(window).height()
-	}, 0
+	transform: "translateY(" + $(window).height() + "px)"
+	}, 0 
 );
 
 $("#intro").blast({ 
 	delimiter:"character"
 }).velocity("transition.slideUpIn", { 
-	display: null,
-	stagger: 25, 
+	display: "none",
+	stagger: 25,
 	duration: 600,
 	complete: function () {
 		setTimeout(moveHeading, 10);

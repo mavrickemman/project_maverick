@@ -4,7 +4,8 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 var sassPaths = [
-	'node_modules/bootstrap/scss'
+	'node_modules/bootstrap/scss',
+	'node_modules/font-awesome/scss'
 ];
 
 gulp.task('sass', function () {
@@ -15,6 +16,9 @@ gulp.task('sass', function () {
 	}).on('error', $.sass.logError))
 	.pipe(gulp.dest('public/css'))
 	.pipe(reload({ stream: true }));
+
+	gulp.watch(['public/scss/**/*.scss'], ['sass']);
+	
 });
 
 gulp.task('serve', function () {
