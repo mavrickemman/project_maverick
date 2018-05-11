@@ -14,9 +14,9 @@ var sassPaths = [
 gulp.task('scripts', function () {
 	gulp.src([
 		'bower_components/jquery/dist/jquery.js',
-		'bower_components/velocity/velocity.min.js',
+		'bower_components/velocity/velocity.js',
 		'bower_components/velocity/velocity.ui.js',
-		'bower_components/blast-text/jquery.blast.min.js',
+		'bower_components/blast-text/jquery.blast.js',
 	])
 	.pipe(concat('libs.js'))
 	.pipe(uglify())
