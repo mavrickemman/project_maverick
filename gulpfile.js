@@ -9,30 +9,30 @@ var sassPaths = [
 ];
 
 gulp.task('sass', function () {
-	return gulp.src('public/scss/styles.scss')
+	return gulp.src('docs/scss/styles.scss')
 	.pipe($.sass({
 		includePaths: sassPaths,
 		outputStyle: 'compressed'
 	}).on('error', $.sass.logError))
-	.pipe(gulp.dest('public/css'))
+	.pipe(gulp.dest('docs/css'))
 	.pipe(reload({ stream: true }));
 
-	gulp.watch(['public/scss/**/*.scss'], ['sass']);
+	gulp.watch(['docs/scss/**/*.scss'], ['sass']);
 	
 });
 
 gulp.task('serve', function () {
 	browserSync({
 		server: {
-			baseDir: ['./', 'public'],
+			baseDir: ['./', 'docs'],
 		}
 	});
 
-	gulp.watch(['public/scss/**/*.scss'], ['sass']);
-	gulp.watch(['public/*.html']).on('change', browserSync.reload);
+	gulp.watch(['docs/scss/**/*.scss'], ['sass']);
+	gulp.watch(['docs/*.html']).on('change', browserSync.reload);
 	
 });
 
 gulp.task('default', ['sass'], function() {
-	gulp.watch(['public/*.html'], ['public/scss/**/*.scss'], ['sass']);
+	gulp.watch(['docs/*.html'], ['docs/scss/**/*.scss'], ['sass']);
 });
