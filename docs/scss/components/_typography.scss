@@ -82,3 +82,9 @@ a {
 .subheader {
   color: rgba($white, 0.65);
 }
+
+@media (max-width: 767px) {
+  .highlight .text-right {
+    text-align: left !important;
+  }
+}
