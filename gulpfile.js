@@ -1,54 +1,80 @@
-var gulp = require('gulp');
-var $ 	 = require('gulp-load-plugins')();
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
+// Initialize modules
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const { src, dest, watch, series, parallel } = require('gulp');
+const concat = require('gulp-concat');
+const postcss = require('gulp-postcss');
+const replace = require('gulp-replace');
+const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify');
+const browserSync = require('browser-sync').create();
 
-var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
+// File Paths
+const files = {
+	bootstrapScssPath: 'node_modules/bootstrap/scss',
+	scssPath: 'docs/scss/**/*.scss',
+	jqueryPath: 'node_modules/jquery/dist/jquery.min.js',
+	bootstrapJsPath: 'node_modules/bootstrap/dist/js/bootstrap.min.js',
+	popperJsPath:'node_modules/popper.js/dist/umd/popper.min.js',
+	pluginJsPath: 'docs/js/plugins.js',
+	jsPath: 'docs/js/app.js',
+	htmlPath: './docs/*.html'
+};
 
-var sassPaths = [
-	'node_modules/bootstrap/scss',
-	'node_modules/font-awesome/scss'
-];
+// Sass Compilation Task
+function scssTask() {
+	return src(files.scssPath)
+		.pipe(sourcemaps.init())
+		.pipe(sass({
+			includePaths: files.bootstrapScssPath,
+			outputStyle: 'compressed'
+		}))
+		.pipe(postcss([ autoprefixer(), cssnano() ]))
+		.pipe(sourcemaps.write('.'))
+		.pipe(dest('docs/css'))
+		.pipe(browserSync.stream());
+}
 
-gulp.task('scripts', function () {
-	gulp.src([
-		'bower_components/jquery/dist/jquery.js',
-		'bower_components/velocity/velocity.js',
-		'bower_components/velocity/velocity.ui.js',
-		'bower_components/blast-text/jquery.blast.js',
-		'docs/js/app.js'
-	])
-	.pipe(concat('main.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('docs/js'))
-});
+// JS Compilation Task
+function jsTask() {
+	return src([files.jqueryPath, files.pluginJsPath, files.jsPath])
+		.pipe(concat('main.js'))
+		// .pipe(uglify())
+		.pipe(dest('docs/js'))
+		.pipe(browserSync.stream());
+}
 
-gulp.task('sass', function () {
-	return gulp.src('docs/scss/styles.scss')
-	.pipe($.sass({
-		includePaths: sassPaths,
-		outputStyle: 'compressed'
-	}).on('error', $.sass.logError))
-	.pipe(gulp.dest('docs/css'))
-	.pipe(reload({ stream: true }));
+// Cachebusting Task
+const cbString = new Date().getTime();
+function cacheBustTask() {
+	return src(['docs/*.html'])
+		.pipe(replace(/cb=\d+/g, 'cb=' + cbString))
+		.pipe(dest('docs/.'));
+}
 
-	gulp.watch(['docs/scss/**/*.scss'], ['sass']);
-	
-});
-
-gulp.task('serve', function () {
-	browserSync({
+// Watch Task
+function watchTask() {
+	browserSync.init({
 		server: {
-			baseDir: ['./', 'docs'],
+			baseDir: './docs'
 		}
 	});
 
-	gulp.watch(['docs/scss/**/*.scss'], ['sass']);
-	gulp.watch(['docs/*.html']).on('change', browserSync.reload);
-	
-});
+	watch([files.scssPath, files.jsPath], parallel(scssTask, jsTask));
+	watch(files.htmlPath).on('change', browserSync.reload);
 
-gulp.task('default', ['sass'], function() {
-	gulp.watch(['docs/*.html'], ['docs/scss/**/*.scss'], ['sass']);
-});
+}
+
+exports.scssTask = scssTask;
+
+exports.jsTask = jsTask;
+
+exports.watchTask = watchTask;
+
+// Default Task
+exports.default = series(
+	parallel(scssTask, jsTask),
+	cacheBustTask,
+	watchTask
+);

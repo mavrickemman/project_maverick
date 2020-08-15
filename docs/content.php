@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div id="intro" class="col-md-9">
-                <h1>Hello, world.</h1>
+                <h1>Hello, worlds.</h1>
                 <p class="lead">I am Emman Calabroso. I design simple and usable solutions to problems arising from humans interacting
                     with machines. Though I do employ good visual design for this, I go beyond them
                     and think in terms of design systems and modules rather than pages and layouts. I
@@ -11,7 +11,7 @@
                 <p class="lead">I am currently at <b><a href="https://chromedia.com" target="_blank">Chromedia</a></b>.</p>
             </div>
         </div>
-    </div>  
+    </div>
 </section>
 
 <section class="highlight" style="padding: 2rem 0;">
