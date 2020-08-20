@@ -39,7 +39,7 @@ $('.highlight')
 
 $("#intro").blast({
   delimiter: "character"
-}).velocity("transition.slideUpIn", {
+ }).velocity("transition.slideUpIn", {
   display: null,
   stagger: 25,
   duration: 600,
