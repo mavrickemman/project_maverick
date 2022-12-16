@@ -21,7 +21,7 @@
                 <h6>GET IN TOUCH</h6>
                 <ul class="no-bullet fancy-list">
                     <li>
-                        <a href="mailto:emman.calabroso@gmail.com?Subject=Hello%20" class="fancy-hover slide-in">emman.calabroso@gmail.com</a>
+                        <a href="mailto:emman.calabroso@chromedia.com?Subject=Hello%20" class="fancy-hover slide-in">emman.calabroso@chromedia.com</a>
                     </li>
                 </ul>
             </div>
@@ -38,9 +38,9 @@
                     <li>
                         <a href="https://dribbble.com/mavrickemman" class="fancy-hover slide-in">I post sample works at Dribbble.</a>
                     </li>
-                    <li>
-                        <a href="https://twitter.com/mavrickemman" class="fancy-hover slide-in">I primarily share on Twitter</a>
-                    </li>
+//                    <li>
+//                        <a href="https://twitter.com/mavrickemman" class="fancy-hover slide-in">I primarily share on Twitter</a>
+//                    </li>
                     <li>
                         <a href="https://www.linkedin.com/in/emmancalabroso/" class="fancy-hover slide-in">I update my career details on LinkedIn</a>
                     </li>
