@@ -1,11 +1,47 @@
 const animationLockClass = "is-entrance-animating";
-const animationLockTimeout = window.setTimeout(unlockPageScroll, 6000);
+const entranceTimers = [];
+let isCancellingEntrance = false;
 
 document.body.classList.add(animationLockClass);
+document.addEventListener("click", cancelEntranceAnimation, { passive: true });
+document.addEventListener("keydown", cancelEntranceAnimation);
+scheduleEntranceStep(unlockPageScroll, 6000);
+
+function scheduleEntranceStep(callback, delay) {
+  const timer = window.setTimeout(callback, delay);
+  entranceTimers.push(timer);
+  return timer;
+}
 
 function unlockPageScroll() {
   document.body.classList.remove(animationLockClass);
-  window.clearTimeout(animationLockTimeout);
+  entranceTimers.forEach(window.clearTimeout);
+  entranceTimers.length = 0;
+  isCancellingEntrance = false;
+  document.removeEventListener("click", cancelEntranceAnimation);
+  document.removeEventListener("keydown", cancelEntranceAnimation);
+}
+
+function cancelEntranceAnimation() {
+  if (!document.body.classList.contains(animationLockClass) || isCancellingEntrance) {
+    return;
+  }
+
+  isCancellingEntrance = true;
+  entranceTimers.forEach(window.clearTimeout);
+  entranceTimers.length = 0;
+
+  $("#intro, #intro .blast, .highlight, .slide-in")
+    .velocity("stop", true)
+    .velocity({
+      opacity: 1,
+      translateY: 0
+    }, {
+      display: null,
+      duration: 1200,
+      easing: "easeOutQuad",
+      complete: unlockPageScroll
+    });
 }
 
 function moveHeading() {
@@ -31,7 +67,7 @@ function slideInItems() {
       drag: true
     });
 
-  setTimeout(function(){
+  scheduleEntranceStep(function(){
     $('#tipCalc')
       .velocity({
         scale: 1,
@@ -58,8 +94,7 @@ $("#intro").blast({
   stagger: 25,
   duration: 600,
   complete: function () {
-    setTimeout(moveHeading, 10);
-    setTimeout(slideInItems, 800);
+    scheduleEntranceStep(moveHeading, 10);
+    scheduleEntranceStep(slideInItems, 800);
   }
 });
-

@@ -26,7 +26,7 @@ a {
 
   > li {
     position: relative;
-    padding: 0.5rem 0;
+    padding: 0;
     width: 100%;
     border-bottom: 1px dotted color.adjust(theme.$red, $lightness: 15%);
 
@@ -57,26 +57,25 @@ a {
     border-bottom: none;
     text-indent: 0;
     transition: text-indent 0.2s cubic-bezier(0.34, 1.61, 0.7, 1);
-    padding-left: 0;
+    padding: 0.75rem 0 0.25rem;
     overflow: hidden;
 
     &:before {
       position: absolute;
       content: "→";
       left: 0;
-      top: 0;
-      bottom: 0;
-      margin: 0 auto;
-      transform: translateX(-1rem);
+      top: calc(50% + 0.25rem);
+      transform: translate(-1rem, -50%);
       transition: transform 0.2s ease-in-out;
     }
 
     &:hover {
+      color: theme.$white;
       text-indent: 1rem;
       padding-left: 2rem;
 
       &:before {
-        transform: translateX(0);
+        transform: translate(0, -50%);
       }
     }
   }
