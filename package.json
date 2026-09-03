@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp build",
+    "dev": "gulp",
+    "audit": "npm audit",
+    "test": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -17,26 +20,21 @@
   },
   "homepage": "https://github.com/mavrickemman/project_maverick#readme",
   "devDependencies": {
-    "autoprefixer": "^9.8.6",
-    "blast-text": "^2.0.0",
-    "bootstrap": "^4.5.2",
-    "browser-sync": "^2.26.12",
-    "cssnano": "^4.1.10",
-    "font-awesome": "^4.7.0",
-    "gulp": "^4.0.2",
+    "autoprefixer": "^10.5.4",
+    "bootstrap": "^5.3.8",
+    "cssnano": "^7.1.9",
+    "gulp": "^5.0.1",
     "gulp-concat": "^2.6.1",
-    "gulp-load-plugins": "^1.6.0",
-    "gulp-postcss": "^8.0.0",
-    "gulp-replace": "^1.0.0",
-    "gulp-sass": "^4.1.0",
-    "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglify": "^3.0.2",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1",
-    "velocity": "^0.7.2",
-    "velocity-animate": "^1.5.2"
+    "gulp-postcss": "^10.0.0",
+    "gulp-replace": "^1.1.4",
+    "gulp-sass": "^6.0.1",
+    "jquery": "^3.7.1",
+    "sass": "^1.103.1"
   },
-  "dependencies": {
-    "natives": "^1.1.6"
+  "engines": {
+    "node": ">=20.17"
+  },
+  "overrides": {
+    "ini": "^1.3.8"
   }
 }

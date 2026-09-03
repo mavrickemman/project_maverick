@@ -1,3 +1,13 @@
+const animationLockClass = "is-entrance-animating";
+const animationLockTimeout = window.setTimeout(unlockPageScroll, 6000);
+
+document.body.classList.add(animationLockClass);
+
+function unlockPageScroll() {
+  document.body.classList.remove(animationLockClass);
+  window.clearTimeout(animationLockTimeout);
+}
+
 function moveHeading() {
   $("#intro")
     .velocity({
@@ -10,7 +20,11 @@ function slideInItems() {
   $('.highlight')
     .velocity({
       translateY: 0,
-    }, [400,30], 1800);
+    }, {
+      easing: [400,30],
+      duration: 1800,
+      complete: unlockPageScroll
+    });
   $(".slide-in")
     .velocity("transition.slideUpIn", {
       stagger: 80,
@@ -48,5 +62,4 @@ $("#intro").blast({
     setTimeout(slideInItems, 800);
   }
 });
-
 

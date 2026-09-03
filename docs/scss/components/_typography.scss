@@ -1,8 +1,11 @@
+@use 'sass:color';
+@use 'theme';
+
 a {
   display: inline-block;
   line-height: 1.5;
-  border-bottom: 1px solid lighten($link-color, 15%);
-  color: lighten($red, 15%);
+  border-bottom: 1px solid color.adjust(theme.$link-color, $lightness: 15%);
+  color: color.adjust(theme.$red, $lightness: 15%);
 }
 
 #intro {
@@ -11,7 +14,7 @@ a {
   }
 
   a {
-    color: lighten($red, 15%);
+    color: color.adjust(theme.$red, $lightness: 15%);
     border-bottom: none;
   }
 }
@@ -25,14 +28,14 @@ a {
     position: relative;
     padding: 0.5rem 0;
     width: 100%;
-    border-bottom: 1px dotted lighten($red, 15%);
+    border-bottom: 1px dotted color.adjust(theme.$red, $lightness: 15%);
 
     &:before {
       content: "";
       position: absolute;
       width: 100%;
       height: 100%;
-      background-color: $red;
+      background-color: theme.$red;
       transform: rotateX(90deg);
       transform-origin: 0 100%;
       transition: transform 0.2s ease-in-out;
@@ -80,11 +83,11 @@ a {
 }
 
 .subheader {
-  color: rgba($white, 0.65);
+  color: rgba(theme.$white, 0.65);
 }
 
 @media (max-width: 500px) {
-  .highlight .text-right {
+  .highlight .text-end {
     text-align: left !important;
   }
 }

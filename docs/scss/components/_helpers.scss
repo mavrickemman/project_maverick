@@ -1,3 +1,12 @@
+html {
+  scrollbar-gutter: stable;
+}
+
+body.is-entrance-animating {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .mt-1 {
   margin-top: 16px !important;
 }

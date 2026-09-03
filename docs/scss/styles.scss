@@ -1,13 +1,21 @@
-// Insert variable overrides first
-@import '_functions';
-@import 'components/_variables';
+@use 'components/theme' as theme;
 
-// Main Bootstrap
-@import 'bootstrap';
-//@import 'font-awesome';
+@use 'bootstrap' with (
+  $body-bg: theme.$black,
+  $body-color: theme.$white,
+  $container-max-widths: theme.$container-max-widths,
+  $font-family-sans-serif: theme.$font-family-sans-serif,
+  $grid-breakpoints: theme.$grid-breakpoints,
+  $grid-gutter-width: 30px,
+  $headings-font-family: theme.$headings-font-family,
+  $headings-font-weight: 700,
+  $link-color: theme.$white,
+  $link-decoration: none,
+  $link-hover-color: theme.$link-hover-color,
+  $link-hover-decoration: none
+);
 
-// Custom Components
-@import 'components/_fonts';
-@import 'components/_typography';
-@import 'components/_navs';
-@import 'components/_helpers';
+@use 'components/fonts';
+@use 'components/typography';
+@use 'components/navs';
+@use 'components/helpers';
