@@ -58,6 +58,7 @@ function watchTask() {
 function serverTask(done) {
 	const root = path.resolve('docs');
 	const contentTypes = {
+		'.xml': 'application/xml; charset=UTF-8',
 		'.css': 'text/css; charset=UTF-8',
 		'.html': 'text/html; charset=UTF-8',
 		'.ico': 'image/x-icon',

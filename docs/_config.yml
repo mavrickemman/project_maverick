@@ -1,0 +1,12 @@
+# GitHub Pages publishes the static portfolio from this directory.
+# Keep development files and legacy PHP templates out of the public site.
+exclude:
+  - test
+  - test.html
+  - index.php
+  - header.php
+  - content.php
+  - scss
+  - css/styles.css.map
+  - js/app.js
+  - js/plugins.js
